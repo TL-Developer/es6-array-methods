@@ -19,11 +19,29 @@ describe('Method from array => Every', () => {
     const dataQuiz: TQuiz = {
       nome: "Tiago Lima",
       respostas: [
-        { questaoId: '01', ok: false },
+        { questaoId: '01', ok: true },
         { questaoId: '02', ok: true },
+        { questaoId: '03', ok: true },
       ]
     };
-    
-    expect(makeQuiz(dataQuiz).output.acertouTodas).to.be.true;
+
+    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+
+    expect(acertouTodas).to.be.true;
+  });
+
+  it('Deve retornar com o total de acertos false', () => {
+    const dataQuiz: TQuiz = {
+      nome: "Tiago Lima",
+      respostas: [
+        { questaoId: '01', ok: false },
+        { questaoId: '02', ok: false },
+        { questaoId: '03', ok: false },
+      ]
+    };
+
+    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+
+    expect(acertouTodas).to.be.false;
   });
 });

@@ -20,7 +20,7 @@ export interface IQuiz {
 
 export class Quiz implements IQuiz {
   private readonly quiz: TQuiz;
-  private respostasIncorretas: TRespostas[] = [];
+  private acertouTodas: boolean = false;
 
   constructor (
     quiz: TQuiz,
@@ -29,32 +29,15 @@ export class Quiz implements IQuiz {
   }
   
   run(): void {
-    this.quiz.respostas.every((resposta: TRespostas) => {
-      this.respostasIncorretas.push(resposta);
+    this.acertouTodas = this.quiz.respostas.every((resposta: TRespostas) => {
+      return resposta.ok;
     });
   }
 
   output(): TOutput {
-    const acertouTodas = this.respostasIncorretas.length !== 0;
-
     return {
       nome: this.quiz.nome,
-      acertouTodas,
+      acertouTodas: this.acertouTodas,
     };
   }
 };
-
-const dataQuiz: TQuiz = {
-  nome: "Tiago Lima",
-  respostas: [
-    { questaoId: '01', ok: false },
-    { questaoId: '02', ok: true },
-    { questaoId: '03', ok: false },
-    { questaoId: '04', ok: true },
-    { questaoId: '05', ok: false },
-  ]
-};
-
-const startQuiz = new Quiz(dataQuiz);
-
-startQuiz.run();
