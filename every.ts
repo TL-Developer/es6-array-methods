@@ -1,43 +1,16 @@
-export type TRespostas = {
-  questaoId: string,
-  ok: boolean,
-};
+import { Quiz, TQuiz, TRespostas } from './Quiz';
 
-export type TQuiz = {
-  nome: string,
-  respostas: TRespostas[],
-};
-
-export type TOutput = {
-  nome: string,
-  acertouTodas: boolean,
-};
-
-export interface IQuiz {
-  run(): void
-  output(): TOutput;
-};
-
-export class Quiz implements IQuiz {
-  private readonly quiz: TQuiz;
-  private acertouTodas: boolean = false;
-
+export class Every extends Quiz {
   constructor (
     quiz: TQuiz,
+    acertouTodas: boolean = false,
   ) {
-    this.quiz = quiz;
+    super(quiz, acertouTodas);
   }
-  
+
   run(): void {
     this.acertouTodas = this.quiz.respostas.every((resposta: TRespostas) => {
       return resposta.ok;
     });
-  }
-
-  output(): TOutput {
-    return {
-      nome: this.quiz.nome,
-      acertouTodas: this.acertouTodas,
-    };
   }
 };

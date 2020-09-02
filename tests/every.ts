@@ -2,15 +2,16 @@ import chai from 'chai';
 
 const expect = chai.expect;
 
-import { TQuiz, Quiz } from '../every';
+import { Every } from '../Every';
+import { TQuiz } from '../Quiz';
 
-const makeQuiz = (dataQuiz: TQuiz) => {
-  const startQuiz = new Quiz(dataQuiz);
+const makeEvery = (dataQuiz: TQuiz) => {
+  const every = new Every(dataQuiz);
 
-  startQuiz.run();
+  every.run();
 
   return {
-    output: startQuiz.output(),
+    output: every.output(),
   };
 };
 
@@ -25,7 +26,7 @@ describe('Method from array => Every', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeEvery(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.true;
   });
@@ -40,7 +41,7 @@ describe('Method from array => Every', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeEvery(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.false;
   });

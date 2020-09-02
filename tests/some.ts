@@ -2,15 +2,16 @@ import chai from 'chai';
 
 const expect = chai.expect;
 
-import { TQuiz, Quiz } from '../some';
+import { Some } from '../Some';
+import { TQuiz } from '../Quiz';
 
-const makeQuiz = (dataQuiz: TQuiz) => {
-  const startQuiz = new Quiz(dataQuiz);
+const makeSome = (dataQuiz: TQuiz) => {
+  const some = new Some(dataQuiz);
 
-  startQuiz.run();
+  some.run();
 
   return {
-    output: startQuiz.output(),
+    output: some.output(),
   };
 };
 
@@ -25,7 +26,7 @@ describe('Method from array => Some', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeSome(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.true;
   });
@@ -40,7 +41,7 @@ describe('Method from array => Some', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeSome(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.true;
   });
@@ -55,7 +56,7 @@ describe('Method from array => Some', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeSome(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.true;
   });
@@ -70,7 +71,7 @@ describe('Method from array => Some', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeSome(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.true;
   });
@@ -85,7 +86,7 @@ describe('Method from array => Some', () => {
       ]
     };
 
-    const acertouTodas = makeQuiz(dataQuiz).output.acertouTodas;
+    const acertouTodas = makeSome(dataQuiz).output.acertouTodas;
 
     expect(acertouTodas).to.be.false;
   });
